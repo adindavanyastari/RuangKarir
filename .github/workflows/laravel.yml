@@ -10,24 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Setup PHP & Composer
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: 8.2
-        extensions: mbstring, bcmath, pdo, pdo_mysql, curl, fileinfo, openssl
-
-    - name: Install Composer dependencies
-      run: composer install --no-interaction --prefer-dist --optimize-autoloader
-
-    - name: Copy .env
-      run: cp .env.example .env
-
-    - name: Generate app key
-      run: php artisan key:generate
-
     - name: Deploy to VPS via SSH
       uses: appleboy/ssh-action@v1.0.0
       with:
@@ -36,11 +18,7 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         port: 22
         script: |
-          cd /var/www/
+          git config --global --add safe.directory /var/www/ruangkarir
+          cd /var/www/ruangkarir/
           git pull origin main
-          composer install --no-interaction --prefer-dist --optimize-autoloader
-          php artisan migrate --force
-          php artisan config:cache
-          php artisan route:cache
-          php artisan view:cache
-          php artisan storage:link
+          git status
