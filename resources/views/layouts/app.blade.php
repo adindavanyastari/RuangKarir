@@ -134,175 +134,198 @@ body {
 
 <!-- Navbar dengan Gradient -->
 <nav class="bg-gradient-to-r from-white via-orange-50 to-orange-100 shadow-lg sticky top-0 z-50 border-b border-orange-200">
-<div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-<a href="{{ route('welcome') }}" class="text-2xl font-bold text-orange-primary hover:text-orange-600 transition-colors">
-    Ruang Karir
-</a>
-
-<!-- Mobile toggle -->
-<button class="sm:hidden text-gray-600 hover:text-orange-600 transition-colors" onclick="toggleNavbar()">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-    </svg>
-</button>
-
-<!-- Desktop Menu -->
-<div id="nav-menu" class="hidden sm:flex space-x-1 items-center">
-    @php
-        $currentRoute = Route::currentRouteName();
-    @endphp
-    
-    @auth
-        @php
-            $userProfile = \App\Models\Profile::where('user_id', Auth::id())->first();
-            $isAdmin = in_array(Auth::user()->email, ['khususkuliah3690@gmail.com']);
-        @endphp
-        <a href="{{ route('dashboard') }}" 
-           class="nav-link {{ $currentRoute == 'dashboard' ? 'active' : '' }}">
-            Dashboard
-        </a>
-        <a href="{{ route('pengguna.index') }}" 
-           class="nav-link {{ $currentRoute == 'pengguna.index' ? 'active' : '' }}">
-            Students
-        </a>
-        <a href="{{ route('peluang') }}" 
-           class="nav-link {{ str_contains($currentRoute, 'peluang') ? 'active' : '' }}">
-            Opportunities
-        </a>
-        <a href="{{ route('about') }}" 
-           class="nav-link {{ $currentRoute == 'about' ? 'active' : '' }}">
-            About
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <a href="{{ route('welcome') }}" class="text-2xl font-bold text-orange-primary hover:text-orange-600 transition-colors">
+            Ruang Karir
         </a>
 
-        <!-- Admin Menu -->
-        @if($isAdmin)
-            <div class="relative" x-data="{ open: false }">
-                <button @click="open = !open" class="flex items-center space-x-1 nav-link text-orange-600 hover:text-orange-700 hover:bg-orange-50 focus:outline-none">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                    </svg>
-                    <span>Admin</span>
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
-                <div x-show="open" @click.away="open = false" x-transition class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-orange-200 py-2 z-50">
-                    <div class="px-4 py-2 border-b border-orange-200">
-                        <p class="text-xs font-medium text-orange-600 uppercase tracking-wide">Admin Panel</p>
-                    </div>
-                    <a href="{{ route('admin.internships.index') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">
-                        <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
-                        </svg>
-                        Manage Jobs
+        <!-- Mobile toggle -->
+        <div class="md:hidden flex justify-end gap-2">
+            <div >
+                <a href="{{ route('register') }}"
+                class="px-4 py-1.5 text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md">
+                    Get Started
+                </a>
+                @guest
+                    <a href="{{ route('login') }}"
+                    class="px-4 py-1.5 text-sm font-medium text-gray-700 hover:text-orange-600 bg-white border border-gray-200 rounded-lg hover:border-orange-300 transition-all duration-300 shadow-sm hover:shadow-md">
+                        Sign In
                     </a>
-                    <a href="{{ route('admin.internships.create') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">
-                        <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                        </svg>
-                        Add New Job
-                    </a>
-                </div>
+                @endguest
             </div>
-        @endif
 
-        <!-- Profile Dropdown -->
-        <div class="relative" x-data="{ open: false }">
-            <button @click="open = !open" class="flex items-center space-x-2 focus:outline-none hover:scale-105 transition-transform ml-4">
-                <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-orange-200 hover:border-orange-300 transition-colors shadow-sm">
-                    @if($userProfile && $userProfile->foto && $userProfile->foto !== 'icon')
-                        <img src="{{ asset($userProfile->foto) }}" alt="Profile" class="w-full h-full object-cover">
-                    @else
-                        <div class="w-full h-full bg-orange-gradient flex items-center justify-center">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                            </svg>
-                        </div>
-                    @endif
-                </div>
-                <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            <button class="text-gray-600 hover:text-orange-600 transition-colors" onclick="toggleNavbar()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
-            <div x-show="open" @click.away="open = false" x-transition class="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-orange-200 py-2 z-50">
-                @if($userProfile)
-                    <div class="px-4 py-3 border-b border-orange-100">
-                        <p class="text-sm font-medium text-gray-900">{{ $userProfile->nama }}</p>
-                        <p class="text-xs text-gray-500">{{ $userProfile->email }}</p>
-                        @if($isAdmin)
-                            <span class="inline-block mt-1 px-2 py-1 bg-orange-100 text-orange-600 text-xs font-medium rounded-full">Admin</span>
-                        @endif
-                    </div>
-                    <a href="{{ route('profile.my-profile') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">
-                        <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                        </svg>
-                        View Profile
-                    </a>
-                @else
-                    <a href="{{ route('profile.create') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">
-                        <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                        </svg>
-                        Create Profile
-                    </a>
-                @endif
-                
-                <div class="border-t border-orange-100 mt-2 pt-2">
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="flex items-center w-full px-4 py-2 text-sm text-orange-600 hover:bg-orange-50 transition-colors">
-                            <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-                            </svg>
-                            Sign Out
-                        </button>
-                    </form>
-                </div>
-            </div>
         </div>
-    @else
-        <!-- GUEST NAVIGATION -->
-        <a href="{{ route('welcome') }}" 
-           class="nav-link {{ $currentRoute == 'welcome' ? 'active' : '' }}">
-            Start Here
-        </a>
-        <a href="{{ route('about') }}" 
-           class="nav-link {{ $currentRoute == 'about' ? 'active' : '' }}">
-            About
-        </a>
-    @endauth
-</div>
-</div>
 
-<!-- Mobile Menu -->
-<div id="mobile-menu" class="sm:hidden hidden bg-gradient-to-r from-white via-orange-50 to-orange-100 border-t border-orange-200">
-<div class="px-4 py-2 space-y-1">
-    @auth
-        @php
-            $isAdminMobile = in_array(Auth::user()->email, ['khususkuliah3690@gmail.com']);
-        @endphp
-        
-        <a href="{{ route('dashboard') }}" class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Dashboard</a>
-        <a href="{{ route('pengguna.index') }}" class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Students</a>
-        <a href="{{ route('peluang') }}" class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Opportunities</a>
-        <a href="{{ route('about') }}" class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">About</a>
-        
-        @if($isAdminMobile)
-            <div class="border-t border-orange-200 pt-2 mt-2">
-                <p class="text-xs font-medium text-orange-600 uppercase tracking-wide mb-2 px-3">Admin Panel</p>
-                <a href="{{ route('admin.internships.index') }}" class="block py-3 text-orange-600 hover:text-orange-700 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Manage Jobs</a>
-                <a href="{{ route('admin.internships.create') }}" class="block py-3 text-orange-600 hover:text-orange-700 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Add New Job</a>
-            </div>
-        @endif
-    @else
-        <!-- MOBILE GUEST NAVIGATION -->
-        <a href="{{ route('welcome') }}" class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Start Here</a>
-        <a href="{{ route('about') }}" class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">About</a>
-    @endauth
-</div>
-</div>
+        <!-- Desktop Menu -->
+        <div id="nav-menu" class="hidden sm:flex space-x-1 items-center">
+            @php
+                $currentRoute = Route::currentRouteName();
+            @endphp
+
+            @auth
+                @php
+                    $userProfile = \App\Models\Profile::where('user_id', Auth::id())->first();
+                    $isAdmin = in_array(Auth::user()->email, ['khususkuliah3690@gmail.com']);
+                @endphp
+                <a href="{{ route('dashboard') }}"
+                class="nav-link {{ $currentRoute == 'dashboard' ? 'active' : '' }}">
+                    Dashboard
+                </a>
+                <a href="{{ route('pengguna.index') }}"
+                class="nav-link {{ $currentRoute == 'pengguna.index' ? 'active' : '' }}">
+                    Students
+                </a>
+                <a href="{{ route('peluang') }}"
+                class="nav-link {{ str_contains($currentRoute, 'peluang') ? 'active' : '' }}">
+                    Opportunities
+                </a>
+                <a href="{{ route('about') }}"
+                class="nav-link {{ $currentRoute == 'about' ? 'active' : '' }}">
+                    About
+                </a>
+
+                <!-- Admin Menu -->
+                @if($isAdmin)
+                    <div class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="flex items-center space-x-1 nav-link text-orange-600 hover:text-orange-700 hover:bg-orange-50 focus:outline-none">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span>Admin</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div x-show="open" @click.away="open = false" x-transition class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-orange-200 py-2 z-50">
+                            <div class="px-4 py-2 border-b border-orange-200">
+                                <p class="text-xs font-medium text-orange-600 uppercase tracking-wide">Admin Panel</p>
+                            </div>
+                            <a href="{{ route('admin.internships.index') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">
+                                <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                                </svg>
+                                Manage Jobs
+                            </a>
+                            <a href="{{ route('admin.internships.create') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">
+                                <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                </svg>
+                                Add New Job
+                            </a>
+                        </div>
+                    </div>
+                @endif
+
+                <!-- Profile Dropdown -->
+                <div class="relative" x-data="{ open: false }">
+                    <button @click="open = !open" class="flex items-center space-x-2 focus:outline-none hover:scale-105 transition-transform ml-4">
+                        <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-orange-200 hover:border-orange-300 transition-colors shadow-sm">
+                            @if($userProfile && $userProfile->foto && $userProfile->foto !== 'icon')
+                                <img src="{{ asset($userProfile->foto) }}" alt="Profile" class="w-full h-full object-cover">
+                            @else
+                                <div class="w-full h-full bg-orange-gradient flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                    </svg>
+                                </div>
+                            @endif
+                        </div>
+                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div x-show="open" @click.away="open = false" x-transition class="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-orange-200 py-2 z-50">
+                        @if($userProfile)
+                            <div class="px-4 py-3 border-b border-orange-100">
+                                <p class="text-sm font-medium text-gray-900">{{ $userProfile->nama }}</p>
+                                <p class="text-xs text-gray-500">{{ $userProfile->email }}</p>
+                                @if($isAdmin)
+                                    <span class="inline-block mt-1 px-2 py-1 bg-orange-100 text-orange-600 text-xs font-medium rounded-full">Admin</span>
+                                @endif
+                            </div>
+                            <a href="{{ route('profile.my-profile') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">
+                                <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                </svg>
+                                View Profile
+                            </a>
+                        @else
+                            <a href="{{ route('profile.create') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">
+                                <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                </svg>
+                                Create Profile
+                            </a>
+                        @endif
+
+                        <div class="border-t border-orange-100 mt-2 pt-2">
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="flex items-center w-full px-4 py-2 text-sm text-orange-600 hover:bg-orange-50 transition-colors">
+                                    <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                    </svg>
+                                    Sign Out
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            @else
+                <!-- GUEST NAVIGATION -->
+                <a href="{{ route('welcome') }}"
+                class="nav-link {{ $currentRoute == 'welcome' ? 'active' : '' }}">
+                    Start Here
+                </a>
+                <a href="{{ route('about') }}"
+                class="nav-link {{ $currentRoute == 'about' ? 'active' : '' }}">
+                    About
+                </a>
+                <a href="{{ route('register') }}"
+                    class="px-6 py-2.5 text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md">
+                    Get Started
+                </a>
+                <a href="{{ route('login') }}"
+                class="px-6 py-2.5 text-sm font-medium text-gray-700 hover:text-orange-600 bg-white border border-gray-200 rounded-lg hover:border-orange-300 transition-all duration-300 shadow-sm hover:shadow-md">
+                    Sign In
+                </a>
+            @endauth
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="sm:hidden hidden bg-gradient-to-r from-white via-orange-50 to-orange-100 border-t border-orange-200">
+        <div class="px-4 py-2 space-y-1">
+            @auth
+                @php
+                    $isAdminMobile = in_array(Auth::user()->email, ['khususkuliah3690@gmail.com']);
+                @endphp
+
+                <a href="{{ route('dashboard') }}" class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Dashboard</a>
+                <a href="{{ route('pengguna.index') }}" class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Students</a>
+                <a href="{{ route('peluang') }}" class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Opportunities</a>
+                <a href="{{ route('about') }}" class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">About</a>
+
+                @if($isAdminMobile)
+                    <div class="border-t border-orange-200 pt-2 mt-2">
+                        <p class="text-xs font-medium text-orange-600 uppercase tracking-wide mb-2 px-3">Admin Panel</p>
+                        <a href="{{ route('admin.internships.index') }}" class="block py-3 text-orange-600 hover:text-orange-700 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Manage Jobs</a>
+                        <a href="{{ route('admin.internships.create') }}" class="block py-3 text-orange-600 hover:text-orange-700 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Add New Job</a>
+                    </div>
+                @endif
+            @else
+                <!-- MOBILE GUEST NAVIGATION -->
+                <a href="{{ route('welcome') }}" class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Start Here</a>
+                <a href="{{ route('about') }}" class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">About</a>
+            @endauth
+        </div>
+    </div>
 </nav>
 
 <!-- Flash Messages -->
@@ -350,24 +373,27 @@ body {
     <p class="text-orange-200 mb-4 leading-relaxed">Exclusive career platform for UISI students. Discover the best opportunities to build your professional future.</p>
 </div>
 
-<div>
-    <h4 class="font-semibold mb-4 text-orange-100">Navigation</h4>
-    <ul class="space-y-2">
-        <li><a href="{{ route('dashboard') }}" class="text-orange-200 hover:text-orange-100 transition-colors">Dashboard</a></li>
-        <li><a href="{{ route('pengguna.index') }}" class="text-orange-200 hover:text-orange-100 transition-colors">Students</a></li>
-        <li><a href="{{ route('peluang') }}" class="text-orange-200 hover:text-orange-100 transition-colors">Opportunities</a></li>
-        <li><a href="{{ route('about') }}" class="text-orange-200 hover:text-orange-100 transition-colors">About</a></li>
-    </ul>
+<div class="grid grid-cols-2 gap-4 md:col-span-2">
+    <div>
+        <h4 class="font-semibold mb-4 text-orange-100">Navigation</h4>
+        <ul class="space-y-2">
+            <li><a href="{{ route('dashboard') }}" class="text-orange-200 hover:text-orange-100 transition-colors">Dashboard</a></li>
+            <li><a href="{{ route('pengguna.index') }}" class="text-orange-200 hover:text-orange-100 transition-colors">Students</a></li>
+            <li><a href="{{ route('peluang') }}" class="text-orange-200 hover:text-orange-100 transition-colors">Opportunities</a></li>
+            <li><a href="{{ route('about') }}" class="text-orange-200 hover:text-orange-100 transition-colors">About</a></li>
+        </ul>
+    </div>
+
+    <div>
+        <h4 class="font-semibold mb-4 text-orange-100">Contact</h4>
+        <ul class="space-y-2">
+            <li class="text-orange-200">ruangkarir@uisi.ac.id</li>
+            <li class="text-orange-200">(031) 3985482</li>
+            <li class="text-orange-200">Komplek PT Semen Indonesia<br>Jl. Veteran, Gresik 61122</li>
+        </ul>
+    </div>
 </div>
 
-<div>
-    <h4 class="font-semibold mb-4 text-orange-100">Contact</h4>
-    <ul class="space-y-2">
-        <li class="text-orange-200">ruangkarir@uisi.ac.id</li>
-        <li class="text-orange-200">(031) 3985482</li>
-        <li class="text-orange-200">Komplek PT Semen Indonesia<br>Jl. Veteran, Gresik 61122</li>
-    </ul>
-</div>
 
 <div>
     <h4 class="font-semibold mb-4 text-orange-100">Follow Us</h4>
@@ -379,7 +405,7 @@ body {
             </svg>
             <span class="text-sm font-medium">Instagram</span>
         </a>
-        
+
         <!-- YouTube -->
         <a href="https://youtube.com/@sayauisi?si=wJm50vBDt39LQXGu" target="_blank" class="flex items-center space-x-2 text-orange-200 hover:text-orange-100 transition-colors bg-orange-700/30 p-3 rounded-lg hover:bg-orange-600/40">
             <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -387,7 +413,7 @@ body {
             </svg>
             <span class="text-sm font-medium">YouTube</span>
         </a>
-        
+
         <!-- Website -->
         <a href="https://uisi.ac.id/" target="_blank" class="flex items-center space-x-2 text-orange-200 hover:text-orange-100 transition-colors bg-orange-700/30 p-3 rounded-lg hover:bg-orange-600/40">
             <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -395,7 +421,7 @@ body {
             </svg>
             <span class="text-sm font-medium">Website</span>
         </a>
-        
+
         <!-- TikTok -->
         <a href="https://www.tiktok.com/@sayauisi?_t=ZS-8xWuGukS5GX&_r=1" target="_blank" class="flex items-center space-x-2 text-orange-200 hover:text-orange-100 transition-colors bg-orange-700/30 p-3 rounded-lg hover:bg-orange-600/40">
             <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -403,7 +429,7 @@ body {
             </svg>
             <span class="text-sm font-medium">TikTok</span>
         </a>
-        
+
         <!-- Twitter -->
         <a href="https://x.com/sayauisi?t=LqywSSqTlJURFLaqLVcvyA&s=08" target="_blank" class="flex items-center space-x-2 text-orange-200 hover:text-orange-100 transition-colors bg-orange-700/30 p-3 rounded-lg hover:bg-orange-600/40 col-span-2">
             <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -421,12 +447,12 @@ body {
 
 <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <script>
-function toggleNavbar() {
-const menu = document.getElementById('nav-menu');
-const mobileMenu = document.getElementById('mobile-menu');
-menu.classList.toggle('hidden');
-mobileMenu.classList.toggle('hidden');
-}
+    function toggleNavbar() {
+        // const menu = document.getElementById('nav-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        // menu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('hidden');
+    }
 </script>
 </body>
 </html>

@@ -18,7 +18,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-gray-700 hover:text-orange-600">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    
+
                     <x-nav-link :href="route('peluang')" :active="request()->routeIs('peluang*')" class="text-gray-700 hover:text-orange-600">
                         {{ __('Peluang Magang') }}
                     </x-nav-link>
@@ -80,11 +80,11 @@
                 @else
                     <!-- Guest Navigation -->
                     <div class="flex items-center space-x-4">
-                        <a href="{{ route('login') }}" 
+                        <a href="{{ route('login') }}"
                            class="text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
                             Sign In
                         </a>
-                        <a href="{{ route('register') }}" 
+                        <a href="{{ route('register') }}"
                            class="bg-gradient-to-r from-orange-500 to-amber-500 text-white px-6 py-2 rounded-full hover:from-orange-600 hover:to-amber-600 transition-all duration-200 font-medium text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
                             Sign Up
                         </a>
@@ -110,7 +110,7 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            
+
             <x-responsive-nav-link :href="route('peluang')" :active="request()->routeIs('peluang*')">
                 {{ __('Peluang Magang') }}
             </x-responsive-nav-link>
@@ -164,11 +164,11 @@
             <!-- Guest Mobile Menu -->
             <div class="pt-4 pb-1 border-t border-gray-200">
                 <div class="px-4 space-y-2">
-                    <a href="{{ route('login') }}" 
+                    <a href="{{ route('login') }}"
                        class="block text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-base font-medium">
                         Sign In
                     </a>
-                    <a href="{{ route('register') }}" 
+                    <a href="{{ route('register') }}"
                        class="block bg-gradient-to-r from-orange-500 to-amber-500 text-white px-3 py-2 rounded-md text-base font-medium text-center">
                         Sign Up
                     </a>

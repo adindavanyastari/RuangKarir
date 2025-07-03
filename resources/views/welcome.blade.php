@@ -10,23 +10,23 @@
     </div>
 
     <!-- Sign In/Sign Up Buttons -->
-    <div class="relative z-10 max-w-7xl mx-auto px-4 pt-6">
+    {{-- <div class="relative z-10 max-w-7xl mx-auto px-4 pt-6">
         <div class="flex justify-end space-x-4">
-            <a href="{{ route('login') }}" 
+            <a href="{{ route('login') }}"
                class="px-6 py-2.5 text-sm font-medium text-gray-700 hover:text-orange-600 bg-white border border-gray-200 rounded-lg hover:border-orange-300 transition-all duration-300 shadow-sm hover:shadow-md">
                 Sign In
             </a>
-            <a href="{{ route('register') }}" 
+            <a href="{{ route('register') }}"
                class="px-6 py-2.5 text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md">
                 Get Started
             </a>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Main Hero Content -->
     <div class="relative z-10 max-w-7xl mx-auto px-4 py-20 lg:py-32">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            
+
             <!-- Left Content -->
             <div class="text-center lg:text-left">
                 <div class="mb-8">
@@ -34,9 +34,9 @@
                         Exclusive Platform for UISI Students
                     </span>
                 </div>
-                
+
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 leading-tight">
-                    Build Your 
+                    Build Your
                     <span class="text-orange-500 relative">
                         Professional
                         <svg class="absolute -bottom-2 left-0 w-full h-3 text-orange-200" viewBox="0 0 200 12" fill="currentColor">
@@ -45,21 +45,21 @@
                     </span>
                     <br>Career Journey
                 </h1>
-                
+
                 <p class="text-xl text-gray-600 mb-10 leading-relaxed max-w-xl">
                     Connect with top companies, discover exclusive internship opportunities, and accelerate your career growth with our comprehensive platform designed specifically for UISI students.
                 </p>
 
                 <!-- CTA Buttons -->
                 <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
-                    <a href="{{ route('register') }}" 
+                    <a href="{{ route('register') }}"
                        class="inline-flex items-center justify-center px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
                         Start Your Journey
                         <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                         </svg>
                     </a>
-                    <a href="{{ route('peluang') }}" 
+                    <a href="{{ route('peluang') }}"
                        class="inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-gray-50 text-gray-700 font-semibold rounded-xl border-2 border-gray-200 hover:border-orange-300 transition-all duration-300 shadow-lg hover:shadow-xl">
                         Explore Opportunities
                     </a>
@@ -88,11 +88,11 @@
                     <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6">
                         <!-- Hero Image -->
                         <div class="w-full h-80 bg-gray-100 rounded-lg overflow-hidden mb-6">
-                            <img src="/images/welcome.png" 
-                                 alt="Professional Career Development" 
+                            <img src="/images/welcome.png"
+                                 alt="Professional Career Development"
                                  class="w-full h-full object-cover">
                         </div>
-                        
+
                         <!-- Achievement indicators -->
                         <div class="flex justify-center space-x-6">
                             <div class="bg-white rounded-full p-4 shadow-md">
@@ -194,19 +194,19 @@
         <p class="text-xl text-orange-100 mb-10 leading-relaxed">
             Join thousands of UISI students who have already started their professional journey with us. Your dream career is just one click away.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{{ route('register') }}" 
+        {{-- <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{{ route('register') }}"
                class="inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-gray-100 text-orange-600 font-bold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
                 Get Started Today
                 <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                 </svg>
             </a>
-            <a href="{{ route('about') }}" 
+            <a href="{{ route('about') }}"
                class="inline-flex items-center justify-center px-8 py-4 bg-transparent hover:bg-orange-400 text-white font-semibold rounded-xl border-2 border-white hover:border-orange-400 transition-all duration-300">
                 Learn More About Us
             </a>
-        </div>
+        </div> --}}
     </div>
 </div>
 @endsection

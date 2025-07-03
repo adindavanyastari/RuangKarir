@@ -25,7 +25,7 @@
                 <p style="color: #6b7280;" class="text-lg leading-relaxed mb-8">
                     Dengan teknologi terdepan dan jaringan industri yang luas, kami berkomitmen untuk membantu setiap mahasiswa UISI menemukan jalur karir yang sesuai dengan passion dan keahlian mereka.
                 </p>
-                
+
                 <div class="grid grid-cols-2 gap-6">
                     <div class="text-center">
                         <div style="color: #ea580c;" class="text-3xl font-bold mb-2">5,000+</div>
@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div style="background: linear-gradient(135deg, #fed7aa, #fb923c);" class="rounded-2xl p-8 text-center">
                 <svg style="color: #ea580c;" class="h-24 w-24 mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
@@ -61,7 +61,7 @@
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
             <!-- Feature 1 -->
             <div style="background-color: white;" class="rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-all duration-300">
                 <div style="background: linear-gradient(135deg, #fb923c, #ea580c);" class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
@@ -168,7 +168,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div>
                 <h2 style="color: #1f2937;" class="text-3xl font-bold mb-6">Nilai-Nilai Kami</h2>
                 <div class="space-y-6">
@@ -197,8 +197,8 @@
             <h2 class="text-3xl md:text-4xl font-bold mb-4">Butuh Bantuan?</h2>
             <p class="text-xl opacity-90">Tim support kami siap membantu Anda 24/7</p>
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <div class="grid grid-cols-2 gap-4 md:gap-8">
             <div class="text-center">
                 <div style="background-color: rgba(255, 255, 255, 0.1);" class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -208,7 +208,7 @@
                 <h3 class="text-xl font-bold mb-2">Email</h3>
                 <p class="text-orange-100">ruangkarir@uisi.ac.id</p>
             </div>
-            
+
             <div class="text-center">
                 <div style="background-color: rgba(255, 255, 255, 0.1);" class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -218,8 +218,8 @@
                 <h3 class="text-xl font-bold mb-2">Telepon</h3>
                 <p class="text-orange-100">(031) 8298-1234</p>
             </div>
-            
-            <div class="text-center">
+
+            <div class="text-center col-span-2 md:col-span-1">
                 <div style="background-color: rgba(255, 255, 255, 0.1);" class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
