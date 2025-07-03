@@ -198,7 +198,7 @@
             <p class="text-xl opacity-90">Tim support kami siap membantu Anda 24/7</p>
         </div>
 
-        <div class="grid grid-cols-2 gap-4 md:gap-8">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
             <div class="text-center">
                 <div style="background-color: rgba(255, 255, 255, 0.1);" class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

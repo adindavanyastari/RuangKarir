@@ -145,18 +145,96 @@
 
             <!-- Mobile toggle -->
             <div class="md:hidden flex justify-end gap-2">
-                @guest
+                {{-- @guest
                     <div>
                         <a href="{{ route('register') }}"
                             class="px-4 py-1.5 text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md">
-                            Get Started
+                            Mulai Sekarang
                         </a>
                         <a href="{{ route('login') }}"
                             class="px-4 py-1.5 text-sm font-medium text-gray-700 hover:text-orange-600 bg-white border border-gray-200 rounded-lg hover:border-orange-300 transition-all duration-300 shadow-sm hover:shadow-md">
-                            Sign In
+                            Masuk
                         </a>
                     </div>
-                @endguest
+                @endguest --}}
+                @auth
+                    @php
+                        $currentRoute = Route::currentRouteName();
+                        $userProfile = \App\Models\Profile::where('user_id', Auth::id())->first();
+                        $isAdmin = in_array(Auth::user()->email, ['khususkuliah3690@gmail.com']);
+                    @endphp
+                    <!-- Profile Dropdown -->
+                    <div class="relative" x-data="{ open: false }">
+                        <button @click="open = !open"
+                            class="flex items-center space-x-2 focus:outline-none hover:scale-105 transition-transform ml-4">
+                            <div
+                                class="w-10 h-10 rounded-full overflow-hidden border-2 border-orange-200 hover:border-orange-300 transition-colors shadow-sm">
+                                @if ($userProfile && $userProfile->foto && $userProfile->foto !== 'icon')
+                                    <img src="{{ asset($userProfile->foto) }}" alt="Profile"
+                                        class="w-full h-full object-cover">
+                                @else
+                                    <div class="w-full h-full bg-orange-gradient flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                @endif
+                            </div>
+                            <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                                </path>
+                            </svg>
+                        </button>
+                        <div x-show="open" @click.away="open = false" x-transition
+                            class="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-orange-200 py-2 z-50">
+                            @if ($userProfile)
+                                <div class="px-4 py-3 border-b border-orange-100">
+                                    <p class="text-sm font-medium text-gray-900">{{ $userProfile->nama }}</p>
+                                    <p class="text-xs text-gray-500">{{ $userProfile->email }}</p>
+                                    @if ($isAdmin)
+                                        <span
+                                            class="inline-block mt-1 px-2 py-1 bg-orange-100 text-orange-600 text-xs font-medium rounded-full">Admin</span>
+                                    @endif
+                                </div>
+                                <a href="{{ route('profile.my-profile') }}"
+                                    class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">
+                                    <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                    </svg>
+                                    Lihat Profil
+                                </a>
+                            @else
+                                <a href="{{ route('profile.create') }}"
+                                    class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">
+                                    <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                    </svg>
+                                    Membuat Profil
+                                </a>
+                            @endif
+
+                            <div class="border-t border-orange-100 mt-2 pt-2">
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit"
+                                        class="flex items-center w-full px-4 py-2 text-sm text-orange-600 hover:bg-orange-50 transition-colors">
+                                        <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                                            </path>
+                                        </svg>
+                                        Sign Out
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                @endauth
 
                 <button class="text-gray-600 hover:text-orange-600 transition-colors" onclick="toggleNavbar()">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -182,14 +260,14 @@
                     </a>
                     <a href="{{ route('pengguna.index') }}"
                         class="nav-link {{ $currentRoute == 'pengguna.index' ? 'active' : '' }}">
-                        Students
+                        Siswa
                     </a>
                     <a href="{{ route('peluang') }}"
                         class="nav-link {{ str_contains($currentRoute, 'peluang') ? 'active' : '' }}">
-                        Opportunities
+                        Peluang
                     </a>
                     <a href="{{ route('about') }}" class="nav-link {{ $currentRoute == 'about' ? 'active' : '' }}">
-                        About
+                        Tentang
                     </a>
 
                     <!-- Admin Menu -->
@@ -222,7 +300,7 @@
                                             d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
                                         </path>
                                     </svg>
-                                    Manage Jobs
+                                    Kelola Pekerjaan
                                 </a>
                                 <a href="{{ route('admin.internships.create') }}"
                                     class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">
@@ -230,7 +308,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                     </svg>
-                                    Add New Job
+                                    Tambah Pekerjaan Baru
                                 </a>
                             </div>
                         </div>
@@ -278,7 +356,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                                     </svg>
-                                    View Profile
+                                    Lihat Profil
                                 </a>
                             @else
                                 <a href="{{ route('profile.create') }}"
@@ -287,7 +365,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                     </svg>
-                                    Create Profile
+                                    Membuat Profil
                                 </a>
                             @endif
 
@@ -311,18 +389,18 @@
                 @else
                     <!-- GUEST NAVIGATION -->
                     <a href="{{ route('welcome') }}" class="nav-link {{ $currentRoute == 'welcome' ? 'active' : '' }}">
-                        Start Here
+                        Mulai Di Sini
                     </a>
                     <a href="{{ route('about') }}" class="nav-link {{ $currentRoute == 'about' ? 'active' : '' }}">
-                        About
+                        Tentang
                     </a>
                     <a href="{{ route('register') }}"
                         class="px-6 py-2.5 text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md">
-                        Get Started
+                        Mulai Sekarang
                     </a>
                     <a href="{{ route('login') }}"
                         class="px-6 py-2.5 text-sm font-medium text-gray-700 hover:text-orange-600 bg-white border border-gray-200 rounded-lg hover:border-orange-300 transition-all duration-300 shadow-sm hover:shadow-md">
-                        Sign In
+                        Masuk
                     </a>
                 @endauth
             </div>
@@ -340,31 +418,39 @@
                     <a href="{{ route('dashboard') }}"
                         class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Dashboard</a>
                     <a href="{{ route('pengguna.index') }}"
-                        class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Students</a>
+                        class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Siswa</a>
                     <a href="{{ route('peluang') }}"
-                        class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Opportunities</a>
+                        class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Peluang</a>
                     <a href="{{ route('about') }}"
-                        class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">About</a>
+                        class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Tentang</a>
 
                     @if ($isAdminMobile)
                         <div class="border-t border-orange-200 pt-2 mt-2">
                             <p class="text-xs font-medium text-orange-600 uppercase tracking-wide mb-2 px-3">Admin Panel
                             </p>
                             <a href="{{ route('admin.internships.index') }}"
-                                class="block py-3 text-orange-600 hover:text-orange-700 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Manage
-                                Jobs</a>
+                                class="block py-3 text-orange-600 hover:text-orange-700 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Kelola
+                                Pekerjaan</a>
                             <a href="{{ route('admin.internships.create') }}"
-                                class="block py-3 text-orange-600 hover:text-orange-700 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Add
-                                New Job</a>
+                                class="block py-3 text-orange-600 hover:text-orange-700 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Tambah
+                                Pekerjaan Baru</a>
                         </div>
                     @endif
                 @else
                     <!-- MOBILE GUEST NAVIGATION -->
                     <a href="{{ route('welcome') }}"
-                        class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Start
-                        Here</a>
+                        class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Mulai
+                        Di Sini</a>
                     <a href="{{ route('about') }}"
-                        class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">About</a>
+                        class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Tentang</a>
+                    <a href="{{ route('register') }}"
+                        class="block px-3 py-3 text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md">
+                        Mulai Sekarang
+                    </a>
+                    <a href="{{ route('login') }}"
+                        class="block px-3 py-3 text-sm font-medium text-gray-700 hover:text-orange-600 bg-white border border-gray-200 rounded-lg hover:border-orange-300 transition-all duration-300 shadow-sm hover:shadow-md">
+                        Masuk
+                    </a>
                 @endauth
             </div>
         </div>
@@ -418,8 +504,8 @@
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
                 <h3 class="text-xl font-bold mb-4 text-orange-100">Ruang Karir UISI</h3>
-                <p class="text-orange-200 mb-4 leading-relaxed">Exclusive career platform for UISI students. Discover
-                    the best opportunities to build your professional future.</p>
+                <p class="text-orange-200 mb-4 leading-relaxed">Platform karier eksklusif untuk mahasiswa UISI. Temukan
+                    berbagai peluang terbaik untuk membangun masa depan profesionalmu.</p>
             </div>
 
             <div class="grid grid-cols-2 gap-4 md:col-span-2">
@@ -429,11 +515,11 @@
                         <li><a href="{{ route('dashboard') }}"
                                 class="text-orange-200 hover:text-orange-100 transition-colors">Dashboard</a></li>
                         <li><a href="{{ route('pengguna.index') }}"
-                                class="text-orange-200 hover:text-orange-100 transition-colors">Students</a></li>
+                                class="text-orange-200 hover:text-orange-100 transition-colors">Siswa</a></li>
                         <li><a href="{{ route('peluang') }}"
-                                class="text-orange-200 hover:text-orange-100 transition-colors">Opportunities</a></li>
+                                class="text-orange-200 hover:text-orange-100 transition-colors">Peluang</a></li>
                         <li><a href="{{ route('about') }}"
-                                class="text-orange-200 hover:text-orange-100 transition-colors">About</a></li>
+                                class="text-orange-200 hover:text-orange-100 transition-colors">Tentang</a></li>
                     </ul>
                 </div>
 

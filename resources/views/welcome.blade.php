@@ -32,12 +32,12 @@
                     <div class="mb-8">
                         <span
                             class="inline-block px-4 py-2 bg-orange-50 text-orange-600 rounded-full text-sm font-medium border border-orange-100">
-                            Exclusive Platform for UISI Students
+                            Platform Eksklusif untuk Mahasiswa UISI
                         </span>
                     </div>
 
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 leading-tight">
-                        Build Your
+                        Bangun Perjalanan Karier
                         <span class="text-orange-500 relative">
                             Professional
                             <svg class="absolute -bottom-2 left-0 w-full h-3 text-orange-200" viewBox="0 0 200 12"
@@ -45,43 +45,42 @@
                                 <path d="M0,8 Q50,0 100,4 T200,6 L200,12 L0,12 Z" opacity="0.8" />
                             </svg>
                         </span>
-                        <br>Career Journey
+                        <br>Anda
                     </h1>
 
                     <p class="text-xl text-gray-600 mb-10 leading-relaxed max-w-xl">
-                        Connect with top companies, discover exclusive internship opportunities, and accelerate your career
-                        growth with our comprehensive platform designed specifically for UISI students.
+                        Terhubung dengan perusahaan-perusahaan terkemuka, temukan peluang magang eksklusif, dan percepat perkembangan karier Anda melalui platform yang dirancang khusus untuk mahasiswa UISI. Dengan profil profesional yang terintegrasi, dosen dan HRD dapat dengan mudah menemukan talenta terbaik sesuai kebutuhan mereka.
                     </p>
 
                     <!-- CTA Buttons -->
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
-                        <a href="{{ route('register') }}"
+                        <a href="{{ route('peluang') }}"
                             class="inline-flex items-center justify-center px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                            Start Your Journey
+                            Jelajahi Peluang
                             <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                             </svg>
                         </a>
-                        <a href="{{ route('peluang') }}"
+                        {{-- <a href="{{ route('peluang') }}"
                             class="inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-gray-50 text-gray-700 font-semibold rounded-xl border-2 border-gray-200 hover:border-orange-300 transition-all duration-300 shadow-lg hover:shadow-xl">
                             Explore Opportunities
-                        </a>
+                        </a> --}}
                     </div>
 
                     <!-- Stats -->
                     <div class="grid grid-cols-3 gap-8 text-center lg:text-left">
                         <div>
                             <div class="text-3xl font-bold text-orange-500 mb-1">500+</div>
-                            <div class="text-sm text-gray-600 font-medium">Active Students</div>
+                            <div class="text-sm text-gray-600 font-medium">Siswa Aktif</div>
                         </div>
                         <div>
                             <div class="text-3xl font-bold text-orange-500 mb-1">150+</div>
-                            <div class="text-sm text-gray-600 font-medium">Job Opportunities</div>
+                            <div class="text-sm text-gray-600 font-medium">Peluang Kerja</div>
                         </div>
                         <div>
                             <div class="text-3xl font-bold text-orange-500 mb-1">75+</div>
-                            <div class="text-sm text-gray-600 font-medium">Partner Companies</div>
+                            <div class="text-sm text-gray-600 font-medium">Mitra Perusahaan</div>
                         </div>
                     </div>
                 </div>
@@ -149,11 +148,10 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-20">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                    Why Choose Ruang Karir?
+                    Kenapa Pilih Ruang Karir?
                 </h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Our platform provides comprehensive tools and resources designed specifically for UISI students to excel
-                    in their professional journey.
+                    Platform kami menyediakan berbagai alat dan sumber daya lengkap yang dirancang khusus untuk membantu mahasiswa UISI unggul dalam perjalanan karier profesional mereka.
                 </p>
             </div>
 
@@ -169,10 +167,9 @@
                             </path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Exclusive Opportunities</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Peluang Eksklusif</h3>
                     <p class="text-gray-600 leading-relaxed">
-                        Access to premium internship and job opportunities exclusively available for UISI students from
-                        top-tier companies.
+                        Akses ke peluang magang dan pekerjaan premium yang tersedia secara eksklusif untuk mahasiswa UISI dari perusahaan-perusahaan ternama.
                     </p>
                 </div>
 
@@ -187,10 +184,9 @@
                             </path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Professional Network</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Jaringan Profesional</h3>
                     <p class="text-gray-600 leading-relaxed">
-                        Connect with fellow students, alumni, and industry professionals to expand your network and career
-                        opportunities.
+                        Terhubung dengan sesama mahasiswa, alumni, dan profesional industri untuk memperluas jaringan serta peluang kariermu.
                     </p>
                 </div>
 
@@ -204,10 +200,9 @@
                                 d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Career Development</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Pengembangan Karir</h3>
                     <p class="text-gray-600 leading-relaxed">
-                        Comprehensive tools and resources to build your professional profile, enhance skills, and track your
-                        career progress.
+                        Berbagai alat dan sumber daya lengkap untuk membangun profil profesionalmu, meningkatkan keterampilan, dan memantau perkembangan karirmu.
                     </p>
                 </div>
             </div>
@@ -218,11 +213,10 @@
     <div class="py-20 lg:py-28 bg-gradient-to-r from-orange-500 to-orange-600">
         <div class="max-w-4xl mx-auto px-4 text-center">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-                Ready to Accelerate Your Career?
+                Siap Mempercepat Karirmu?
             </h2>
             <p class="text-xl text-orange-100 mb-10 leading-relaxed">
-                Join thousands of UISI students who have already started their professional journey with us. Your dream
-                career is just one click away.
+                Bergabunglah dengan ribuan mahasiswa UISI yang telah memulai perjalanan karir profesional mereka bersama kami. Karir impianmu hanya satu klik lagi.
             </p>
             {{-- <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="{{ route('register') }}"

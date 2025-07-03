@@ -401,7 +401,7 @@
                         </svg>
                     </div>
                     <h3 class="text-xl font-bold text-slate-800 mb-3">Portofolio Digital</h3>
-                    <p class="text-slate-600 leading-relaxed">Showcase karya terbaikmu dalam format digital yang mudah diakses dan dibagikan kepada calon employer.</p>
+                    <p class="text-slate-600 leading-relaxed">Tunjukkan karya terbaikmu dalam format digital yang mudah diakses dan dibagikan kepada calon perusahaan.</p>
                 </div>
             </div>
 
@@ -448,7 +448,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-3">Career Analytics</h3>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Karir Analytics</h3>
                     <p class="text-slate-600 leading-relaxed">Pantau perkembangan karir dengan analytics mendalam tentang profil dan aplikasi lamaran kerja.</p>
                 </div>
             </div>

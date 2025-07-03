@@ -82,11 +82,11 @@
                     <div class="flex items-center space-x-4">
                         <a href="{{ route('login') }}"
                            class="text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
-                            Sign In
+                            Masuk
                         </a>
                         <a href="{{ route('register') }}"
                            class="bg-gradient-to-r from-orange-500 to-amber-500 text-white px-6 py-2 rounded-full hover:from-orange-600 hover:to-amber-600 transition-all duration-200 font-medium text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
-                            Sign Up
+                            Daftar
                         </a>
                     </div>
                 @endauth
@@ -166,11 +166,11 @@
                 <div class="px-4 space-y-2">
                     <a href="{{ route('login') }}"
                        class="block text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-base font-medium">
-                        Sign In
+                        Masuk
                     </a>
                     <a href="{{ route('register') }}"
                        class="block bg-gradient-to-r from-orange-500 to-amber-500 text-white px-3 py-2 rounded-md text-base font-medium text-center">
-                        Sign Up
+                        Daftar
                     </a>
                 </div>
             </div>

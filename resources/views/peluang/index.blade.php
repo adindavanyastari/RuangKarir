@@ -7,17 +7,17 @@
             <div class="absolute inset-0 bg-black/5"></div>
             <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
                 <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-                    Career <span class="text-orange-200">Opportunities</span>
+                    Peluang Karir
                 </h1>
                 <p class="text-lg md:text-xl text-orange-100 mb-6 max-w-2xl mx-auto leading-relaxed">
-                    Discover premium internship opportunities for UISI students
+                    Temukan peluang magang premium khusus untuk mahasiswa UISI
                 </p>
 
                 <div class="flex flex-wrap justify-center items-center gap-4 text-orange-100">
                     <div
                         class="flex items-center space-x-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
                         <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                        <span class="font-medium text-sm">{{ $internships->total() ?? 0 }} Active Positions</span>
+                        <span class="font-medium text-sm">{{ $internships->total() ?? 0 }} Posisi Tersedia</span>
                     </div>
                     <div
                         class="flex items-center space-x-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
@@ -26,7 +26,7 @@
                                 d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
                                 clip-rule="evenodd"></path>
                         </svg>
-                        <span class="font-medium text-sm">100% Free Access</span>
+                        <span class="font-medium text-sm">100% Gratis Akses</span>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
                             <input type="text" name="search" value="{{ request('search') }}"
-                                placeholder="Search companies, positions, locations..."
+                                placeholder="Cari perusahaan, posisi, lokasi..."
                                 class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 text-gray-700 placeholder-gray-400 text-sm transition-all">
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
-                            <span>Search</span>
+                            <span>Cari</span>
                         </button>
                         @if (request('search'))
                             <a href="{{ route('peluang') }}"
@@ -73,21 +73,21 @@
                 <div class="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between text-gray-600 gap-2">
                     <div class="text-sm">
                         @if (request('search'))
-                            Showing
+                            Menampilkan
                             <span class="font-semibold text-orange-600">{{ $internships->firstItem() ?? 0 }}</span>
-                            to
+                            sampai
                             <span class="font-semibold text-orange-600">{{ $internships->lastItem() ?? 0 }}</span>
-                            of
+                            dari
                             <span class="font-semibold">{{ $internships->total() }}</span>
-                            results for "<strong class="text-orange-600">{{ request('search') }}</strong>"
+                            hasil dari "<strong class="text-orange-600">{{ request('search') }}</strong>"
                         @else
-                            Showing
+                            Menampilkan
                             <span class="font-semibold text-orange-600">{{ $internships->firstItem() ?? 0 }}</span>
-                            to
+                            sampai
                             <span class="font-semibold text-orange-600">{{ $internships->lastItem() ?? 0 }}</span>
-                            of
+                            dari
                             <span class="font-semibold">{{ $internships->total() }}</span>
-                            opportunities
+                            peluang
                         @endif
                     </div>
 

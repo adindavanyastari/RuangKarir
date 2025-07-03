@@ -8,10 +8,10 @@
             <div class="max-w-7xl mx-auto px-4 relative z-10">
                 <div class="text-center">
                     <h1 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-                        Discover <span class="text-orange-200">Students</span>
+                        Peluang Mahasiswa
                     </h1>
                     <p class="text-lg md:text-xl text-orange-100 mb-6 max-w-2xl mx-auto leading-relaxed">
-                        Connect with fellow students, discover talents, and build your professional network
+                        Terhubung dengan sesama mahasiswa, temukan talenta, dan bangun jaringan profesionalmu.
                     </p>
 
                     @php
@@ -24,7 +24,7 @@
                         <div
                             class="flex items-center space-x-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
                             <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                            <span class="font-medium text-sm">{{ $totalStudents }} Students</span>
+                            <span class="font-medium text-sm">{{ $totalStudents }} Mahasiswa</span>
                         </div>
                         <div
                             class="flex items-center space-x-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
@@ -33,7 +33,7 @@
                                     d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            <span class="font-medium text-sm">{{ $activeStudents }} Active</span>
+                            <span class="font-medium text-sm">{{ $activeStudents }} Aktif</span>
                         </div>
                     </div>
                 </div>
@@ -88,15 +88,15 @@ if (request()->filled('sertifikasi')) {
             <!-- Search and Filter Section -->
             <div class="bg-white rounded-2xl shadow-lg p-6 mb-8 border border-orange-200">
                 <div class="mb-6">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Find Students</h2>
-                    <p class="text-gray-600">Search and connect with talented students across different programs</p>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Temukan Mahasiswa</h2>
+                    <p class="text-gray-600">Cari dan terhubung dengan mahasiswa berbakat dari berbagai program studi</p>
                 </div>
 
                 <form method="GET" action="{{ route('pengguna.index') }}" class="space-y-6">
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <!-- Search Input -->
                         <div class="col-span-2 md:col-span-2">
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Search Students</label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Cari Mahasiswa</label>
                             <div class="relative">
                                 <input type="text" name="search" value="{{ request('search') }}"
                                     placeholder="Search by name, skills, interests..."
@@ -114,32 +114,32 @@ if (request()->filled('sertifikasi')) {
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Program</label>
                             <select name="prodi"
                                 class="w-full px-3 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 text-gray-700 transition-all">
-                                <option value="">All Programs</option>
-                                <option value="Manajemen" {{ request('prodi') == 'Manajemen' ? 'selected' : '' }}>Management
+                                <option value="">Semua Program</option>
+                                <option value="Manajemen" {{ request('prodi') == 'Manajemen' ? 'selected' : '' }}>Manajemen
                                 </option>
-                                <option value="Akuntansi" {{ request('prodi') == 'Akuntansi' ? 'selected' : '' }}>Accounting
+                                <option value="Akuntansi" {{ request('prodi') == 'Akuntansi' ? 'selected' : '' }}>Akuntansi
                                 </option>
                                 <option value="Ekonomi Syariah"
-                                    {{ request('prodi') == 'Ekonomi Syariah' ? 'selected' : '' }}>Islamic Economics</option>
+                                    {{ request('prodi') == 'Ekonomi Syariah' ? 'selected' : '' }}>Ekonomi Syariah</option>
                                 <option value="Teknik Kimia" {{ request('prodi') == 'Teknik Kimia' ? 'selected' : '' }}>
-                                    Chemical Engineering</option>
+                                    Teknik Kimia</option>
                                 <option value="Teknik Logistik"
-                                    {{ request('prodi') == 'Teknik Logistik' ? 'selected' : '' }}>Logistics Engineering
+                                    {{ request('prodi') == 'Teknik Logistik' ? 'selected' : '' }}>Teknik Logistik
                                 </option>
                                 <option value="Sistem Informasi"
-                                    {{ request('prodi') == 'Sistem Informasi' ? 'selected' : '' }}>Information Systems
+                                    {{ request('prodi') == 'Sistem Informasi' ? 'selected' : '' }}>Sistem Informasi
                                 </option>
                                 <option value="Informatika" {{ request('prodi') == 'Informatika' ? 'selected' : '' }}>
-                                    Informatics</option>
+                                    Informatika</option>
                                 <option value="Manajemen Rekayasa"
-                                    {{ request('prodi') == 'Manajemen Rekayasa' ? 'selected' : '' }}>Engineering Management
+                                    {{ request('prodi') == 'Manajemen Rekayasa' ? 'selected' : '' }}>Manajemen Rekayasa
                                 </option>
                                 <option value="Teknologi Industri Pertanian"
-                                    {{ request('prodi') == 'Teknologi Industri Pertanian' ? 'selected' : '' }}>Agricultural
-                                    Industrial Technology</option>
+                                    {{ request('prodi') == 'Teknologi Industri Pertanian' ? 'selected' : '' }}>Teknologi
+                                    Industri Pertanian</option>
                                 <option value="Desain Komunikasi Visual"
-                                    {{ request('prodi') == 'Desain Komunikasi Visual' ? 'selected' : '' }}>Visual
-                                    Communication Design</option>
+                                    {{ request('prodi') == 'Desain Komunikasi Visual' ? 'selected' : '' }}>Desain
+                                    Komunikasi Visual</option>
                             </select>
                         </div>
 
@@ -164,7 +164,7 @@ if (request()->filled('sertifikasi')) {
                     <!-- Certification Filter -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Certifications</label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Sertifikasi</label>
                             <input type="text" name="sertifikasi" value="{{ request('sertifikasi') }}"
                                 placeholder="Search by certifications..."
                                 class="w-full px-3 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 text-gray-700 placeholder-gray-400 transition-all">
@@ -176,7 +176,7 @@ if (request()->filled('sertifikasi')) {
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                 </svg>
-                                Search
+                                Cari
                             </button>
                             <a href="{{ route('pengguna.index') }}"
                                 class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-sm hover:shadow-md">
@@ -193,7 +193,7 @@ if (request()->filled('sertifikasi')) {
                             <span class="text-sm font-semibold text-gray-700">Active filters:</span>
                             @if (request('search'))
                                 <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">
-                                    Search: "{{ request('search') }}"
+                                    Cari: "{{ request('search') }}"
                                 </span>
                             @endif
                             @if (request('prodi'))
@@ -208,12 +208,12 @@ if (request()->filled('sertifikasi')) {
                             @endif
                             @if (request('sertifikasi'))
                                 <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">
-                                    Certification: {{ request('sertifikasi') }}
+                                    Sertifikasi: {{ request('sertifikasi') }}
                                 </span>
                             @endif
                         </div>
                         <p class="text-sm text-gray-500">
-                            Found {{ $otherProfiles->total() }} students
+                            Ditemukan {{ $otherProfiles->total() }} siswa
                         </p>
                     </div>
                 @endif
@@ -393,8 +393,8 @@ if (request()->filled('sertifikasi')) {
                         {{-- Page Info --}}
                         <div class="mt-3 text-center">
                             <span class="text-xs text-gray-500">
-                                Showing {{ $otherProfiles->firstItem() }} to {{ $otherProfiles->lastItem() }} of
-                                {{ $otherProfiles->total() }} students
+                                Menampilkan {{ $otherProfiles->firstItem() }} to {{ $otherProfiles->lastItem() }} dari
+                                {{ $otherProfiles->total() }} mahasiswa
                             </span>
                         </div>
                     </div>
@@ -413,10 +413,10 @@ if (request()->filled('sertifikasi')) {
                             </svg>
                         </div>
                         @if (request()->hasAny(['search', 'prodi', 'semester', 'sertifikasi']))
-                            <h3 class="text-2xl font-bold text-gray-900 mb-3">No Students Found</h3>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Tidak Ada Mahasiswa ditemukan</h3>
                             <p class="text-gray-600 mb-6 text-sm leading-relaxed">
-                                No students found matching your search criteria.
-                                Try adjusting your filters or search terms.
+                                Tidak ditemukan mahasiswa yang sesuai dengan kriteria pencarian Anda.
+                                Coba sesuaikan filter atau istilah pencarian Anda.
                             </p>
                             <a href="{{ route('pengguna.index') }}"
                                 class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold text-sm rounded-xl hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-md hover:shadow-lg">
@@ -424,12 +424,12 @@ if (request()->filled('sertifikasi')) {
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                                 </svg>
-                                View All Students
+                                Lihat Semua Mahasiswa
                             </a>
                         @else
-                            <h3 class="text-2xl font-bold text-gray-900 mb-3">No Students Yet</h3>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Tidak Ada Mahasiswa</h3>
                             <p class="text-gray-600 mb-6 text-sm leading-relaxed">
-                                Be the first to create a profile and connect with other students!
+                                Jadilah orang pertama yang membuat profil dan terhubung dengan mahasiswa lainnya!
                             </p>
                             @php
                                 $profile = \App\Models\Profile::where('user_id', Auth::id())->first();
@@ -441,7 +441,7 @@ if (request()->filled('sertifikasi')) {
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                     </svg>
-                                    Create Your Profile
+                                    Buat Profil Anda
                                 </a>
                             @endif
                         @endif
@@ -457,10 +457,9 @@ if (request()->filled('sertifikasi')) {
                 <div
                     class="bg-gradient-to-r from-orange-500 via-orange-600 to-red-600 rounded-2xl shadow-xl p-8 text-center text-white mt-8">
                     <div class="max-w-2xl mx-auto">
-                        <h2 class="text-3xl font-bold mb-4">Create Your Profile</h2>
+                        <h2 class="text-3xl font-bold mb-4">Buat Profil Anda</h2>
                         <p class="text-lg text-orange-100 mb-6 leading-relaxed">
-                            Join our student network and showcase your skills, projects, and achievements to connect with
-                            peers and opportunities.
+                            Bergabunglah dengan jaringan pelajar kami dan tunjukkan keterampilan, proyek, dan prestasi Anda untuk terhubung dengan rekan dan peluang.
                         </p>
                         <a href="{{ route('profile.create') }}"
                             class="inline-flex items-center px-8 py-4 bg-white text-orange-600 font-bold rounded-xl hover:bg-orange-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
@@ -468,7 +467,7 @@ if (request()->filled('sertifikasi')) {
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                             </svg>
-                            Get Started Now
+                            Mulailah Sekarang
                         </a>
                     </div>
                 </div>
