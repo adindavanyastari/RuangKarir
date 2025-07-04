@@ -260,7 +260,7 @@
                     </a>
                     <a href="{{ route('pengguna.index') }}"
                         class="nav-link {{ $currentRoute == 'pengguna.index' ? 'active' : '' }}">
-                        Siswa
+                        Mahasiswa
                     </a>
                     <a href="{{ route('peluang') }}"
                         class="nav-link {{ str_contains($currentRoute, 'peluang') ? 'active' : '' }}">
@@ -418,7 +418,7 @@
                     <a href="{{ route('dashboard') }}"
                         class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Dashboard</a>
                     <a href="{{ route('pengguna.index') }}"
-                        class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Siswa</a>
+                        class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Mahasiswa</a>
                     <a href="{{ route('peluang') }}"
                         class="block py-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 transition-colors font-medium">Peluang</a>
                     <a href="{{ route('about') }}"
@@ -515,7 +515,7 @@
                         <li><a href="{{ route('dashboard') }}"
                                 class="text-orange-200 hover:text-orange-100 transition-colors">Dashboard</a></li>
                         <li><a href="{{ route('pengguna.index') }}"
-                                class="text-orange-200 hover:text-orange-100 transition-colors">Siswa</a></li>
+                                class="text-orange-200 hover:text-orange-100 transition-colors">Mahasiswa</a></li>
                         <li><a href="{{ route('peluang') }}"
                                 class="text-orange-200 hover:text-orange-100 transition-colors">Peluang</a></li>
                         <li><a href="{{ route('about') }}"

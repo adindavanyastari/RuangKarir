@@ -49,7 +49,10 @@
                     </h1>
 
                     <p class="text-xl text-gray-600 mb-10 leading-relaxed max-w-xl">
-                        Terhubung dengan perusahaan-perusahaan terkemuka, temukan peluang magang eksklusif, dan percepat perkembangan karier Anda melalui platform yang dirancang khusus untuk mahasiswa UISI. Dengan profil profesional yang terintegrasi, dosen dan HRD dapat dengan mudah menemukan talenta terbaik sesuai kebutuhan mereka.
+                        Terhubung dengan perusahaan-perusahaan terkemuka, temukan peluang magang eksklusif, dan percepat
+                        perkembangan karier Anda melalui platform yang dirancang khusus untuk mahasiswa UISI. Dengan profil
+                        profesional yang terintegrasi, dosen dan HRD dapat dengan mudah menemukan talenta terbaik sesuai
+                        kebutuhan mereka.
                     </p>
 
                     <!-- CTA Buttons -->
@@ -72,7 +75,7 @@
                     <div class="grid grid-cols-3 gap-8 text-center lg:text-left">
                         <div>
                             <div class="text-3xl font-bold text-orange-500 mb-1">500+</div>
-                            <div class="text-sm text-gray-600 font-medium">Siswa Aktif</div>
+                            <div class="text-sm text-gray-600 font-medium">Mahasiswa Aktif</div>
                         </div>
                         <div>
                             <div class="text-3xl font-bold text-orange-500 mb-1">150+</div>
@@ -151,7 +154,8 @@
                     Kenapa Pilih Ruang Karir?
                 </h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Platform kami menyediakan berbagai alat dan sumber daya lengkap yang dirancang khusus untuk membantu mahasiswa UISI unggul dalam perjalanan karier profesional mereka.
+                    Platform kami menyediakan berbagai alat dan sumber daya lengkap yang dirancang khusus untuk membantu
+                    mahasiswa UISI unggul dalam perjalanan karier profesional mereka.
                 </p>
             </div>
 
@@ -169,7 +173,8 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-4">Peluang Eksklusif</h3>
                     <p class="text-gray-600 leading-relaxed">
-                        Akses ke peluang magang dan pekerjaan premium yang tersedia secara eksklusif untuk mahasiswa UISI dari perusahaan-perusahaan ternama.
+                        Akses ke peluang magang dan pekerjaan premium yang tersedia secara eksklusif untuk mahasiswa UISI
+                        dari perusahaan-perusahaan ternama.
                     </p>
                 </div>
 
@@ -186,7 +191,9 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-4">Jaringan Profesional</h3>
                     <p class="text-gray-600 leading-relaxed">
-                        Terhubung dengan sesama mahasiswa, alumni, dan profesional industri untuk memperluas jaringan serta peluang kariermu.
+                        Temukan Talenta Terbaik
+                        Perusahaan dan dosen dapat dengan mudah menemukan mahasiswa berprestasi yang sesuai dengan kebutuhan
+                        mereka melalui profil profesional yang terintegrasi di platform ini.
                     </p>
                 </div>
 
@@ -202,7 +209,8 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-4">Pengembangan Karir</h3>
                     <p class="text-gray-600 leading-relaxed">
-                        Berbagai alat dan sumber daya lengkap untuk membangun profil profesionalmu, meningkatkan keterampilan, dan memantau perkembangan karirmu.
+                        Berbagai alat dan sumber daya lengkap untuk membangun profil profesionalmu, meningkatkan
+                        keterampilan, dan memantau perkembangan karirmu.
                     </p>
                 </div>
             </div>
@@ -216,7 +224,8 @@
                 Siap Mempercepat Karirmu?
             </h2>
             <p class="text-xl text-orange-100 mb-10 leading-relaxed">
-                Bergabunglah dengan ribuan mahasiswa UISI yang telah memulai perjalanan karir profesional mereka bersama kami. Karir impianmu hanya satu klik lagi.
+                Bergabunglah dengan ribuan mahasiswa UISI yang telah memulai perjalanan karir profesional mereka bersama
+                kami. Karir impianmu hanya satu klik lagi.
             </p>
             {{-- <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="{{ route('register') }}"

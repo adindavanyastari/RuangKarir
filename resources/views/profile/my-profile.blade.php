@@ -3,20 +3,20 @@
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-orange-50 to-orange-100 py-8">
     <div class="max-w-7xl mx-auto px-4">
-        
+
         <!-- Success/Error Messages -->
         @if(session('success'))
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
                 {{ session('success') }}
             </div>
         @endif
-        
+
         @if(session('error'))
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
                 {{ session('error') }}
             </div>
         @endif
-        
+
         @if($errors->any())
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
                 <ul>
@@ -26,7 +26,7 @@
                 </ul>
             </div>
         @endif
-        
+
         <!-- Header Profile -->
         <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
             <div class="bg-gradient-to-r from-orange-400 to-orange-500 h-40 relative">
@@ -46,10 +46,10 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Header Actions -->
                 <div class="absolute top-6 right-6">
-                    <button id="editModeToggle" onclick="toggleEditMode()" 
+                    <button id="editModeToggle" onclick="toggleEditMode()"
                             class="bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-6 py-2 rounded-full text-sm font-medium transition-all flex items-center">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
@@ -58,14 +58,14 @@
                     </button>
                 </div>
             </div>
-            
+
             <!-- Basic Info -->
             <div class="pt-24 pb-8 px-8">
                 <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between">
                     <div class="flex-1">
                         <div class="mb-4">
                             <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ $profile->nama }}</h1>
-                            <div class="flex items-center text-gray-600 mb-2">
+                            <div class="flex flex-col md:flex-row md:items-center text-gray-600 mb-2">
                                 <span class="font-medium">{{ $profile->prodi }}</span>
                                 <span class="mx-2">•</span>
                                 <span>Semester {{ $profile->semester }}</span>
@@ -74,7 +74,7 @@
                             </div>
                             <p class="text-gray-500 mb-4">NIM: {{ $profile->nim }}</p>
                         </div>
-                        
+
                         @if($profile->ringkasan_pribadi)
                         <div class="bg-orange-50 rounded-lg p-4">
                             <h3 class="font-semibold text-gray-900 mb-2">Ringkasan Pribadi</h3>
@@ -82,7 +82,7 @@
                         </div>
                         @endif
                     </div>
-                    
+
                     <!-- Career Interests -->
                     <div class="mt-6 lg:mt-0 lg:ml-8">
                         <div>
@@ -106,14 +106,14 @@
         <form id="profileForm" action="{{ route('profile.update', $profile->id) }}" method="POST" enctype="multipart/form-data" style="display: none;">
             @csrf
             @method('PUT')
-            
+
             <!-- Basic Info Form -->
             <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">Informasi Dasar</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Foto Profil</label>
-                        <input type="file" name="foto" accept="image/*" 
+                        <input type="file" name="foto" accept="image/*"
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
                     </div>
                     <div>
@@ -161,7 +161,7 @@
                     </div>
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Ringkasan Pribadi</label>
-                        <textarea name="ringkasan_pribadi" rows="4" 
+                        <textarea name="ringkasan_pribadi" rows="4"
                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                                   placeholder="Ceritakan tentang diri Anda...">{{ $profile->ringkasan_pribadi }}</textarea>
                     </div>
@@ -196,7 +196,7 @@
                                 </div>
                             @endif
                         </div>
-                        <button type="button" onclick="addSkillInput('hardSkillsContainer', 'hard_skills')" 
+                        <button type="button" onclick="addSkillInput('hardSkillsContainer', 'hard_skills')"
                                 class="mt-2 text-orange-500 hover:text-orange-600 flex items-center text-sm">
                             <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -204,7 +204,7 @@
                             Tambah Hard Skill
                         </button>
                     </div>
-                    
+
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Soft Skills</label>
                         <div id="softSkillsContainer" class="space-y-2">
@@ -229,7 +229,7 @@
                                 </div>
                             @endif
                         </div>
-                        <button type="button" onclick="addSkillInput('softSkillsContainer', 'soft_skills')" 
+                        <button type="button" onclick="addSkillInput('softSkillsContainer', 'soft_skills')"
                                 class="mt-2 text-orange-500 hover:text-orange-600 flex items-center text-sm">
                             <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -268,7 +268,7 @@
                                 </div>
                             @endif
                         </div>
-                        <button type="button" onclick="addListInput('orgContainer', 'organisasi_dan_kepanitiaan')" 
+                        <button type="button" onclick="addListInput('orgContainer', 'organisasi_dan_kepanitiaan')"
                                 class="mt-2 text-orange-500 hover:text-orange-600 flex items-center text-sm">
                             <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -276,7 +276,7 @@
                             Tambah Organisasi
                         </button>
                     </div>
-                    
+
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Proyek & Lomba</label>
                         <div id="projectContainer" class="space-y-2">
@@ -301,7 +301,7 @@
                                 </div>
                             @endif
                         </div>
-                        <button type="button" onclick="addListInput('projectContainer', 'proyek')" 
+                        <button type="button" onclick="addListInput('projectContainer', 'proyek')"
                                 class="mt-2 text-orange-500 hover:text-orange-600 flex items-center text-sm">
                             <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -340,7 +340,7 @@
                                 </div>
                             @endif
                         </div>
-                        <button type="button" onclick="addListInput('certContainer', 'sertifikat')" 
+                        <button type="button" onclick="addListInput('certContainer', 'sertifikat')"
                                 class="mt-2 text-orange-500 hover:text-orange-600 flex items-center text-sm">
                             <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -348,7 +348,7 @@
                             Tambah Sertifikat
                         </button>
                     </div>
-                    
+
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Penghargaan</label>
                         <div id="awardContainer" class="space-y-2">
@@ -373,7 +373,7 @@
                                 </div>
                             @endif
                         </div>
-                        <button type="button" onclick="addListInput('awardContainer', 'penghargaan')" 
+                        <button type="button" onclick="addListInput('awardContainer', 'penghargaan')"
                                 class="mt-2 text-orange-500 hover:text-orange-600 flex items-center text-sm">
                             <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -412,7 +412,7 @@
                                 </div>
                             @endif
                         </div>
-                        <button type="button" onclick="addListInput('careerContainer', 'minat_karier')" 
+                        <button type="button" onclick="addListInput('careerContainer', 'minat_karier')"
                                 class="mt-2 text-orange-500 hover:text-orange-600 flex items-center text-sm">
                             <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -420,7 +420,7 @@
                             Tambah Minat Karier
                         </button>
                     </div>
-                    
+
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Link Portofolio</label>
                         <div id="portfolioContainer" class="space-y-2">
@@ -445,7 +445,7 @@
                                 </div>
                             @endif
                         </div>
-                        <button type="button" onclick="addListInput('portfolioContainer', 'portofolio')" 
+                        <button type="button" onclick="addListInput('portfolioContainer', 'portofolio')"
                                 class="mt-2 text-orange-500 hover:text-orange-600 flex items-center text-sm">
                             <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -459,11 +459,11 @@
             <!-- Save Button -->
             <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
                 <div class="flex justify-end space-x-4">
-                    <button type="button" onclick="toggleEditMode()" 
+                    <button type="button" onclick="toggleEditMode()"
                             class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors">
                         Batal
                     </button>
-                    <button type="submit" 
+                    <button type="submit"
                             class="px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors">
                         Simpan Perubahan
                     </button>
@@ -475,10 +475,10 @@
         <div id="displayMode">
             <!-- Main Content Grid -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                
+
                 <!-- Left Column -->
                 <div class="lg:col-span-2 space-y-8">
-                    
+
                     <!-- Skills Section -->
                     <div class="bg-white rounded-xl shadow-lg p-6">
                         <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
@@ -487,7 +487,7 @@
                             </svg>
                             Keahlian
                         </h2>
-                        
+
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <!-- Hard Skills -->
                             <div>
@@ -504,7 +504,7 @@
                                     @endif
                                 </div>
                             </div>
-                            
+
                             <!-- Soft Skills -->
                             <div>
                                 <h3 class="text-lg font-semibold text-gray-800 mb-3">Soft Skills</h3>
@@ -531,7 +531,7 @@
                             </svg>
                             Pengalaman & Proyek
                         </h2>
-                        
+
                         <!-- Organisasi -->
                         <div class="mb-6">
                             <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
@@ -550,7 +550,7 @@
                                 <p class="text-gray-500 text-sm">Belum ada pengalaman organisasi</p>
                             @endif
                         </div>
-                        
+
                         <!-- Proyek -->
                         <div>
                             <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
@@ -579,7 +579,7 @@
                             </svg>
                             Pencapaian
                         </h2>
-                        
+
                         <!-- Sertifikat -->
                         <div class="mb-6">
                             <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
@@ -598,7 +598,7 @@
                                 <p class="text-gray-500 text-sm">Belum ada sertifikat yang ditambahkan</p>
                             @endif
                         </div>
-                        
+
                         <!-- Penghargaan -->
                         <div>
                             <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
@@ -622,11 +622,11 @@
 
                 <!-- Right Column -->
                 <div class="space-y-8">
-                    
+
                     <!-- Contact Info -->
                     <div class="bg-white rounded-xl shadow-lg p-6">
                         <h2 class="text-xl font-bold text-gray-900 mb-6">Kontak</h2>
-                        
+
                         <div class="space-y-4">
                             <div class="flex items-center">
                                 <svg class="w-5 h-5 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -640,7 +640,7 @@
                     <!-- Portfolio Links -->
                     <div class="bg-white rounded-xl shadow-lg p-6">
                         <h2 class="text-xl font-bold text-gray-900 mb-6">Portofolio</h2>
-                        
+
                         <div class="space-y-3">
                             @if($profile->portofolio)
                                 @foreach(explode(',', $profile->portofolio) as $link)
@@ -664,7 +664,7 @@
                     <!-- Quick Stats -->
                     <div class="bg-white rounded-xl shadow-lg p-6">
                         <h2 class="text-xl font-bold text-gray-900 mb-6">Statistik Profil</h2>
-                        
+
                         <div class="space-y-4">
                             <div class="flex justify-between items-center">
                                 <span class="text-gray-600">Kelengkapan Profil</span>
@@ -683,7 +683,7 @@
                             <div class="w-full bg-gray-200 rounded-full h-2">
                                 <div class="bg-orange-500 h-2 rounded-full" style="width: {{ $percentage }}%"></div>
                             </div>
-                            
+
                             <div class="pt-4 border-t border-gray-200">
                                 <div class="text-sm text-gray-600">
                                     <p>Profil dibuat: {{ $profile->created_at->format('d M Y') }}</p>
@@ -706,9 +706,9 @@ function toggleEditMode() {
     const profileForm = document.getElementById('profileForm');
     const editModeText = document.getElementById('editModeText');
     const editModeToggle = document.getElementById('editModeToggle');
-    
+
     isEditMode = !isEditMode;
-    
+
     if (isEditMode) {
         displayMode.style.display = 'none';
         profileForm.style.display = 'block';
@@ -744,10 +744,10 @@ function addListInput(containerId, fieldName) {
     const container = document.getElementById(containerId);
     const newInput = document.createElement('div');
     newInput.className = 'flex items-center space-x-2';
-    
+
     let placeholder = 'Masukkan item...';
     let inputType = 'text';
-    
+
     if (fieldName === 'portofolio') {
         placeholder = 'https://...';
         inputType = 'url';
@@ -762,7 +762,7 @@ function addListInput(containerId, fieldName) {
     } else if (fieldName === 'minat_karier') {
         placeholder = 'Masukkan minat karier...';
     }
-    
+
     newInput.innerHTML = `
         <input type="${inputType}" name="${fieldName}[]" placeholder="${placeholder}"
                class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
