@@ -23,11 +23,11 @@ class ProfileController extends Controller
     public function myProfile()
     {
         $profile = Profile::where('user_id', Auth::id())->first();
-        
+
         if (!$profile) {
             return redirect()->route('profile.create')->with('warning', 'Silakan buat profil terlebih dahulu.');
         }
-        
+
         return view('profile.my-profile', compact('profile'));
     }
 
@@ -38,9 +38,9 @@ class ProfileController extends Controller
     {
         // Clear cache untuk memastikan data fresh - DIPERBAIKI: hapus tagging
         Cache::forget('student_profiles_search');
-        
+
         $query = Profile::where('user_id', '!=', Auth::id())->orderBy('updated_at', 'desc');
-        
+
         // Handle search functionality
         if ($request->filled('search')) {
             $searchTerm = $request->search;
@@ -83,7 +83,7 @@ class ProfileController extends Controller
         }
 
         $profiles = $query->paginate(12); // Increased to 12 for better scrolling
-        
+
         return view('pengguna.search', compact('profiles'));
     }
 
@@ -95,7 +95,7 @@ class ProfileController extends Controller
         // Clear any profile-related cache to ensure fresh data - DIPERBAIKI: hapus tagging
         Cache::forget('profiles_list');
         Cache::forget('profiles_index');
-        
+
         // Force fresh query with latest updates
         $query = Profile::query()
                        ->orderBy('updated_at', 'desc')
@@ -168,16 +168,16 @@ class ProfileController extends Controller
     public function show($id): View
     {
         $profile = Profile::findOrFail($id);
-        
+
         // Get related profiles (same program studi)
         $relatedProfiles = Profile::where('prodi', $profile->prodi)
                                  ->where('id', '!=', $profile->id)
                                  ->limit(3)
                                  ->get();
-        
+
         // Track profile views (optional)
         $viewCount = Cache::increment("profile_views_{$id}", 1);
-        
+
         return view('profile.show', compact('profile', 'relatedProfiles', 'viewCount'));
     }
 
@@ -191,7 +191,7 @@ class ProfileController extends Controller
         if ($existingProfile) {
             return redirect()->route('profile.my-profile')->with('info', 'Anda sudah memiliki profil.');
         }
-        
+
         return view('profile.create');
     }
 
@@ -202,7 +202,7 @@ class ProfileController extends Controller
     {
         // Debug: Log semua data yang diterima
         Log::info('Profile Store Request Data:', ['data' => $request->all()]);
-        
+
         // Cek apakah user sudah punya profile
         $existingProfile = Profile::where('user_id', Auth::id())->first();
         if ($existingProfile) {
@@ -217,7 +217,7 @@ class ProfileController extends Controller
             'fakultas' => 'required|string|max:100',
             'semester' => 'required|integer|min:1|max:14',
             'email' => 'required|email|max:255',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif',
             'ringkasan_pribadi' => 'nullable|string|max:1000',
             'organisasi_dan_kepanitiaan.*' => 'nullable|string|max:255',
             'proyek.*' => 'nullable|string|max:255',
@@ -235,7 +235,7 @@ class ProfileController extends Controller
         try {
             // Start database transaction
             DB::beginTransaction();
-            
+
             // Handle foto upload - DIPERBAIKI
             $fotoPath = 'icon'; // default
             if ($request->hasFile('foto')) {
@@ -243,7 +243,7 @@ class ProfileController extends Controller
                 $filename = time() . '_' . uniqid() . '_' . $file->getClientOriginalName();
                 $path = $file->storeAs('profile-photos', $filename, 'public');
                 $fotoPath = 'storage/' . $path;
-                
+
                 Log::info('Photo uploaded to:', ['path' => $fotoPath]);
             }
 
@@ -258,16 +258,16 @@ class ProfileController extends Controller
             $profile->email = $request->email;
             $profile->foto = $fotoPath;
             $profile->ringkasan_pribadi = $request->ringkasan_pribadi ?? '';
-            
+
             // Handle array inputs untuk CREATE - ENHANCED
             $arrayFields = [
                 'organisasi_dan_kepanitiaan',
-                'proyek', 
-                'soft_skills', 
-                'hard_skills', 
-                'sertifikat', 
-                'penghargaan', 
-                'minat_karier', 
+                'proyek',
+                'soft_skills',
+                'hard_skills',
+                'sertifikat',
+                'penghargaan',
+                'minat_karier',
                 'portofolio'
             ];
 
@@ -285,23 +285,23 @@ class ProfileController extends Controller
                     }
                 }
                 $profile->$field = $value;
-                
+
                 Log::info("Field {$field}:", ['value' => $value]);
             }
-            
+
             // Simpan ke database - DIPERBAIKI
             $saved = $profile->save();
-            
+
             Log::info('Profile save result:', ['saved' => $saved, 'profile_id' => $profile->id]);
-            
+
             if ($saved) {
                 // Clear cache after creating new profile - DIPERBAIKI: hapus tagging
                 Cache::forget('profiles_list');
                 Cache::forget('profiles_index');
-                
+
                 // Commit transaction
                 DB::commit();
-                
+
                 Log::info('Profile berhasil disimpan, redirecting to my-profile');
                 return redirect()->route('profile.my-profile')->with('success', 'Profil berhasi disimpan dan diperbarui!');
             } else {
@@ -309,7 +309,7 @@ class ProfileController extends Controller
                 Log::error('Gagal menyimpan profile');
                 return back()->withInput()->with('error', 'Gagal menyimpan profil. Silakan coba lagi.');
             }
-            
+
         } catch (\Exception $e) {
             DB::rollback();
             Log::error('Error saving profile:', ['error' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
@@ -327,14 +327,14 @@ class ProfileController extends Controller
         Log::info('Request data:', ['data' => $request->all()]);
         Log::info('Profile ID:', ['id' => $id]);
         Log::info('User ID:', ['user_id' => Auth::id()]);
-        
+
         $profile = Profile::findOrFail($id);
-        
+
         // Validasi bahwa user hanya bisa update profil sendiri
         if ($profile->user_id !== Auth::id()) {
             abort(403, 'Unauthorized action.');
         }
-        
+
         // Validasi input - DIPERBAIKI DAN DIPERLUAS
         $validatedData = $request->validate([
             'nama' => 'required|string|max:255',
@@ -354,16 +354,16 @@ class ProfileController extends Controller
             'minat_karier.*' => 'nullable|string|max:100',
             'portofolio.*' => 'nullable|url|max:255',
         ]);
-        
+
         Log::info('Validated data:', ['data' => $validatedData]);
-        
+
         try {
             // Start database transaction
             DB::beginTransaction();
-            
+
             // Store old values for comparison
             $oldValues = $profile->toArray();
-            
+
             // Update basic fields - DIPERBAIKI
             $profile->nama = $request->nama;
             $profile->nim = $request->nim;
@@ -372,26 +372,26 @@ class ProfileController extends Controller
             $profile->semester = $request->semester;
             $profile->email = $request->email;
             $profile->ringkasan_pribadi = $request->ringkasan_pribadi ?? '';
-            
+
             // Handle array fields - DIPERBAIKI TOTAL
             $arrayFields = [
                 'organisasi_dan_kepanitiaan',
-                'proyek', 
-                'soft_skills', 
-                'hard_skills', 
-                'sertifikat', 
-                'penghargaan', 
-                'minat_karier', 
+                'proyek',
+                'soft_skills',
+                'hard_skills',
+                'sertifikat',
+                'penghargaan',
+                'minat_karier',
                 'portofolio'
             ];
 
             foreach ($arrayFields as $field) {
                 $value = '';
-                
+
                 // Cek apakah field ada di request
                 if ($request->has($field)) {
                     $fieldData = $request->input($field);
-                    
+
                     if (is_array($fieldData)) {
                         // Filter empty values and join with comma
                         $filteredValues = array_filter($fieldData, function($val) {
@@ -402,11 +402,11 @@ class ProfileController extends Controller
                         $value = trim($fieldData);
                     }
                 }
-                
+
                 $profile->$field = $value;
                 Log::info("Updated field {$field}:", ['old' => $oldValues[$field] ?? '', 'new' => $value]);
             }
-            
+
             // Handle foto upload jika ada - DIPERBAIKI
             if ($request->hasFile('foto')) {
                 // Hapus foto lama jika bukan icon
@@ -414,35 +414,35 @@ class ProfileController extends Controller
                     Storage::disk('public')->delete(str_replace('storage/', '', $profile->foto));
                     Log::info('Old photo deleted:', ['path' => $profile->foto]);
                 }
-                
+
                 $file = $request->file('foto');
                 $filename = time() . '_' . uniqid() . '_' . $file->getClientOriginalName();
                 $path = $file->storeAs('profile-photos', $filename, 'public');
                 $profile->foto = 'storage/' . $path;
-                
+
                 Log::info('New photo uploaded:', ['path' => $profile->foto]);
             }
-            
+
             // Force update timestamp untuk memastikan perubahan terdeteksi
             $profile->touch();
-            
+
             // Simpan perubahan - DIPERBAIKI
             $saved = $profile->save();
-            
+
             Log::info('Profile update result:', ['saved' => $saved]);
-            
+
             if ($saved) {
                 // Clear cache setelah update untuk memastikan data fresh - DIPERBAIKI: hapus tagging
                 Cache::forget('profiles_list');
                 Cache::forget('profiles_index');
                 Cache::forget('student_profiles_search');
-                
+
                 // Clear specific profile cache
                 Cache::forget("profile_{$id}");
-                
+
                 // Commit transaction
                 DB::commit();
-                
+
                 Log::info('Profile berhasil diupdate, redirecting to my-profile');
                 return redirect()->route('profile.my-profile')->with('success', 'Profil berhasil disimpan dan diperbarui!');
             } else {
@@ -450,11 +450,11 @@ class ProfileController extends Controller
                 Log::error('Gagal mengupdate profile');
                 return back()->withInput()->with('error', 'Gagal memperbarui profil. Silakan coba lagi.');
             }
-            
+
         } catch (\Exception $e) {
             DB::rollback();
             Log::error('Error updating profile:', [
-                'error' => $e->getMessage(), 
+                'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString(),
                 'request_data' => $request->all()
             ]);
@@ -468,33 +468,33 @@ class ProfileController extends Controller
     public function destroy(Request $request, $id): RedirectResponse
     {
         $profile = Profile::findOrFail($id);
-        
+
         // Validasi bahwa user hanya bisa hapus profil sendiri
         if ($profile->user_id !== Auth::id()) {
             abort(403, 'Unauthorized action.');
         }
-        
+
         try {
             DB::beginTransaction();
-            
+
             // Hapus foto profil jika ada
             if ($profile->foto && $profile->foto !== 'icon' && Storage::exists('public/' . str_replace('storage/', '', $profile->foto))) {
                 Storage::delete('public/' . str_replace('storage/', '', $profile->foto));
                 Log::info('Profile photo deleted:', ['path' => $profile->foto]);
             }
-            
+
             $profile->delete();
-            
+
             // Clear cache after deletion - DIPERBAIKI: hapus tagging
             Cache::forget('profiles_list');
             Cache::forget('profiles_index');
             Cache::forget("profile_{$id}");
-            
+
             DB::commit();
-            
+
             Log::info('Profile deleted successfully:', ['profile_id' => $id]);
             return redirect()->route('dashboard')->with('success', 'Profil berhasil dihapus.');
-            
+
         } catch (\Exception $e) {
             DB::rollback();
             Log::error('Error deleting profile:', ['error' => $e->getMessage()]);
@@ -583,9 +583,9 @@ class ProfileController extends Controller
         $profiles = Profile::whereNotNull('hard_skills')
                           ->orWhereNotNull('soft_skills')
                           ->get();
-        
+
         $skillCounts = [];
-        
+
         foreach ($profiles as $profile) {
             // Count hard skills
             if ($profile->hard_skills) {
@@ -597,7 +597,7 @@ class ProfileController extends Controller
                     }
                 }
             }
-            
+
             // Count soft skills
             if ($profile->soft_skills) {
                 $softSkills = explode(',', $profile->soft_skills);
@@ -609,7 +609,7 @@ class ProfileController extends Controller
                 }
             }
         }
-        
+
         arsort($skillCounts);
         return array_slice($skillCounts, 0, $limit, true);
     }
@@ -633,7 +633,7 @@ class ProfileController extends Controller
     public function exportCsv(Request $request)
     {
         $query = Profile::query();
-        
+
         // Apply same filters as index
         if ($request->filled('search')) {
             $searchTerm = $request->search;
@@ -642,26 +642,26 @@ class ProfileController extends Controller
                   ->orWhere('prodi', 'like', '%' . $searchTerm . '%');
             });
         }
-        
+
         $profiles = $query->get();
-        
+
         $filename = 'profiles_' . date('Y-m-d_H-i-s') . '.csv';
-        
+
         $headers = [
             'Content-Type' => 'text/csv',
             'Content-Disposition' => 'attachment; filename="' . $filename . '"',
         ];
-        
+
         $callback = function() use ($profiles) {
             $file = fopen('php://output', 'w');
-            
+
             // CSV headers
             fputcsv($file, [
-                'ID', 'Nama', 'NIM', 'Program Studi', 'Fakultas', 'Semester', 
-                'Email', 'Hard Skills', 'Soft Skills', 'Minat Karier', 
+                'ID', 'Nama', 'NIM', 'Program Studi', 'Fakultas', 'Semester',
+                'Email', 'Hard Skills', 'Soft Skills', 'Minat Karier',
                 'Created At', 'Updated At'
             ]);
-            
+
             // CSV data
             foreach ($profiles as $profile) {
                 fputcsv($file, [
@@ -679,10 +679,10 @@ class ProfileController extends Controller
                     $profile->updated_at,
                 ]);
             }
-            
+
             fclose($file);
         };
-        
+
         return response()->stream($callback, 200, $headers);
     }
 }
